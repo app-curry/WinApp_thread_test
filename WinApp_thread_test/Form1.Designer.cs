@@ -30,10 +30,12 @@
         {
             this.button_thread_start = new System.Windows.Forms.Button();
             this.textBox_message = new System.Windows.Forms.TextBox();
+            this.button_thread_stop = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_thread_start
             // 
+            this.button_thread_start.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.button_thread_start.Location = new System.Drawing.Point(12, 12);
             this.button_thread_start.Name = "button_thread_start";
             this.button_thread_start.Size = new System.Drawing.Size(237, 83);
@@ -54,11 +56,23 @@
             this.textBox_message.Size = new System.Drawing.Size(528, 121);
             this.textBox_message.TabIndex = 1;
             // 
+            // button_thread_stop
+            // 
+            this.button_thread_stop.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button_thread_stop.Location = new System.Drawing.Point(255, 12);
+            this.button_thread_stop.Name = "button_thread_stop";
+            this.button_thread_stop.Size = new System.Drawing.Size(237, 83);
+            this.button_thread_stop.TabIndex = 2;
+            this.button_thread_stop.Text = "Thread Stop";
+            this.button_thread_stop.UseVisualStyleBackColor = true;
+            this.button_thread_stop.Click += new System.EventHandler(this.button_thread_stop_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(552, 234);
+            this.Controls.Add(this.button_thread_stop);
             this.Controls.Add(this.textBox_message);
             this.Controls.Add(this.button_thread_start);
             this.Name = "Form1";
@@ -72,6 +86,7 @@
 
         private System.Windows.Forms.Button button_thread_start;
         private System.Windows.Forms.TextBox textBox_message;
+        private System.Windows.Forms.Button button_thread_stop;
     }
 }
 

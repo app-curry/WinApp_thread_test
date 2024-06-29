@@ -25,32 +25,45 @@ namespace WinApp_thread_test
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
+        private List<ThreadBase> _threadList = new List<ThreadBase>();
+
         private void button_thread_start_Click(object sender, EventArgs e)
         {
             GUIThreadTest thread = new GUIThreadTest(this);
 
             thread.ThreadStartEvent += Thread_ThreadStartEvent;
-            thread.ThreadCompleteEvent += Thread_ThreadCompleteEvent;
             thread.ThreadProgressEvent += Thread_ThreadProgressEvent;
+            thread.ThreadCompleteEvent += Thread_ThreadCompleteEvent;
 
             thread.StartThread();
 
         }
 
-        private void Thread_ThreadProgressEvent(object sender, int step, int max)
+        private void Thread_ThreadStartEvent(object sender, int threadid)
         {
-            textBox_message.AppendText(string.Format("{0}/{1}", step, max) + Environment.NewLine);
+            _threadList.Add((ThreadBase)sender);
+
+            textBox_message.AppendText(string.Format("ThreadStartEvent {0}", threadid) + Environment.NewLine);
         }
 
-        private void Thread_ThreadStartEvent(object sender)
+        private void Thread_ThreadProgressEvent(object sender, int step, int max, int threadid)
         {
-            textBox_message.AppendText("ThreadStart" + Environment.NewLine);
+            textBox_message.AppendText(string.Format("{0}/{1} {2}", step, max, threadid) + Environment.NewLine);
         }
 
-        private void Thread_ThreadCompleteEvent(object sender)
+        private void Thread_ThreadCompleteEvent(object sender, int threadid)
         {
-            textBox_message.AppendText("ThreadComplete" + Environment.NewLine);
+            _threadList.Remove((ThreadBase)sender);
+
+            textBox_message.AppendText(string.Format("ThreadCompleteEvent {0}", threadid) + Environment.NewLine);
         }
 
+        private void button_thread_stop_Click(object sender, EventArgs e)
+        {
+            foreach (ThreadBase thread in _threadList) 
+            {
+                thread.Break = true;
+            }
+        }
     }
 }
