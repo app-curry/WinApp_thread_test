@@ -15,11 +15,19 @@ namespace WinApp_thread_test.Thread_2_0
         {
         }
 
+        private int _threadid;
+
+        public int Threadid
+        {
+            get { return _threadid; }
+        }
+
+
         public override void ThreadMethod()
         {
-            int threadid = Thread.CurrentThread.ManagedThreadId;
+            _threadid = Thread.CurrentThread.ManagedThreadId;
 
-            OnThreadStartEvent(this, threadid);
+            OnThreadStartEvent(this, _threadid);
 
             int step = 0;
             int max = 100;
@@ -31,10 +39,10 @@ namespace WinApp_thread_test.Thread_2_0
 
                 Thread.Sleep(50);
 
-                OnThreadProgressEvent(this, step, max, threadid);
+                OnThreadProgressEvent(this, step, max, _threadid);
             }
 
-            OnThreadCompleteEvent(this, threadid);
+            OnThreadCompleteEvent(this, _threadid);
         }
 
         public delegate void ThreadProgressEventHandler(object sender, int step, int max, int threadid);

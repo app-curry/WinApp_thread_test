@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinApp_thread_test.TestControl;
 using WinApp_thread_test.Thread_2_0;
 
 namespace WinApp_thread_test
@@ -23,6 +24,29 @@ namespace WinApp_thread_test
         void init()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+
+            // col_id
+            //DataGridViewTextBoxColumn col_id = new DataGridViewTextBoxColumn();
+            //col_id.Name = "col_id";
+            //col_id.HeaderText = "id";
+            //dataGridView1.Columns.Add(col_id);
+
+            // col_threadid
+            DataGridViewTextBoxColumn col_threadid = new DataGridViewTextBoxColumn();
+            col_threadid.Name = TestControl.Const.c_col_threadid;
+            col_threadid.HeaderText = "threadid";
+            dataGridView1.Columns.Add(col_threadid);
+
+            // col_progress
+            DataGridViewTextBoxColumn col_progress = new DataGridViewTextBoxColumn();
+            col_progress.Name = TestControl.Const.c_col_progress;
+            col_progress.HeaderText = "progress";
+            dataGridView1.Columns.Add(col_progress);
+
         }
 
         private List<ThreadBase> _threadList = new List<ThreadBase>();
@@ -34,6 +58,11 @@ namespace WinApp_thread_test
             thread.ThreadStartEvent += Thread_ThreadStartEvent;
             thread.ThreadProgressEvent += Thread_ThreadProgressEvent;
             thread.ThreadCompleteEvent += Thread_ThreadCompleteEvent;
+
+            DataGridViewRow row = new ActiveThreadRow(dataGridView1, thread);
+            row.CreateCells(this.dataGridView1, new object[] { "", "" });
+            this.dataGridView1.Rows.Add(row);
+
 
             thread.StartThread();
 

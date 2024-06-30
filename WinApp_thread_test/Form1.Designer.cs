@@ -31,6 +31,13 @@
             this.button_thread_start = new System.Windows.Forms.Button();
             this.textBox_message = new System.Windows.Forms.TextBox();
             this.button_thread_stop = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_thread_start
@@ -46,14 +53,12 @@
             // 
             // textBox_message
             // 
-            this.textBox_message.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_message.Location = new System.Drawing.Point(12, 101);
+            this.textBox_message.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_message.Location = new System.Drawing.Point(0, 0);
             this.textBox_message.Multiline = true;
             this.textBox_message.Name = "textBox_message";
             this.textBox_message.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_message.Size = new System.Drawing.Size(528, 121);
+            this.textBox_message.Size = new System.Drawing.Size(241, 681);
             this.textBox_message.TabIndex = 1;
             // 
             // button_thread_stop
@@ -67,18 +72,52 @@
             this.button_thread_stop.UseVisualStyleBackColor = true;
             this.button_thread_stop.Click += new System.EventHandler(this.button_thread_stop_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 21;
+            this.dataGridView1.Size = new System.Drawing.Size(479, 681);
+            this.dataGridView1.TabIndex = 3;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(12, 101);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.textBox_message);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
+            this.splitContainer1.Size = new System.Drawing.Size(724, 681);
+            this.splitContainer1.SplitterDistance = 241;
+            this.splitContainer1.TabIndex = 4;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(552, 234);
+            this.ClientSize = new System.Drawing.Size(748, 794);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.button_thread_stop);
-            this.Controls.Add(this.textBox_message);
             this.Controls.Add(this.button_thread_start);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -87,6 +126,8 @@
         private System.Windows.Forms.Button button_thread_start;
         private System.Windows.Forms.TextBox textBox_message;
         private System.Windows.Forms.Button button_thread_stop;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
 
