@@ -37,6 +37,9 @@ namespace WinApp_thread_test.Thread_2_0
                 if (_break)
                     break;
 
+                if (_isSuspend)
+                    Suspend();
+
                 Thread.Sleep(50);
 
                 OnThreadProgressEvent(this, step, max, _threadid);

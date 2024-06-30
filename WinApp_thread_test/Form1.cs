@@ -49,7 +49,7 @@ namespace WinApp_thread_test
 
         }
 
-        private List<ThreadBase> _threadList = new List<ThreadBase>();
+        private List<GUIThreadTest> _threadList = new List<GUIThreadTest>();
 
         private void button_thread_start_Click(object sender, EventArgs e)
         {
@@ -70,7 +70,7 @@ namespace WinApp_thread_test
 
         private void Thread_ThreadStartEvent(object sender, int threadid)
         {
-            _threadList.Add((ThreadBase)sender);
+            _threadList.Add((GUIThreadTest)sender);
 
             textBox_message.AppendText(string.Format("ThreadStartEvent {0}", threadid) + Environment.NewLine);
         }
@@ -82,16 +82,32 @@ namespace WinApp_thread_test
 
         private void Thread_ThreadCompleteEvent(object sender, int threadid)
         {
-            _threadList.Remove((ThreadBase)sender);
+            _threadList.Remove((GUIThreadTest)sender);
 
             textBox_message.AppendText(string.Format("ThreadCompleteEvent {0}", threadid) + Environment.NewLine);
         }
 
         private void button_thread_stop_Click(object sender, EventArgs e)
         {
-            foreach (ThreadBase thread in _threadList) 
+            foreach (GUIThreadTest thread in _threadList)
             {
                 thread.Break = true;
+            }
+        }
+
+        private void button_suspend_Click(object sender, EventArgs e)
+        {
+            foreach (GUIThreadTest thread in _threadList)
+            {
+                thread.SuspendThread();
+            }
+        }
+
+        private void button_resume_Click(object sender, EventArgs e)
+        {
+            foreach (GUIThreadTest thread in _threadList)
+            {
+                thread.ResumeThread();
             }
         }
     }

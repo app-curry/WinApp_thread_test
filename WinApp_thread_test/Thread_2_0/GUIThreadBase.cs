@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace WinApp_thread_test.Thread_2_0
 {
-    abstract public class GUIThreadBase : ThreadBase
+    abstract public class GUIThreadBase : SuspendableThreadBase
     {
         public GUIThreadBase(ISynchronizeInvoke syncobj)
         {

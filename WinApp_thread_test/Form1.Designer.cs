@@ -33,6 +33,8 @@
             this.button_thread_stop = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button_suspend = new System.Windows.Forms.Button();
+            this.button_resume = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -45,7 +47,7 @@
             this.button_thread_start.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.button_thread_start.Location = new System.Drawing.Point(12, 12);
             this.button_thread_start.Name = "button_thread_start";
-            this.button_thread_start.Size = new System.Drawing.Size(237, 83);
+            this.button_thread_start.Size = new System.Drawing.Size(200, 70);
             this.button_thread_start.TabIndex = 0;
             this.button_thread_start.Text = "Thread Start";
             this.button_thread_start.UseVisualStyleBackColor = true;
@@ -58,15 +60,15 @@
             this.textBox_message.Multiline = true;
             this.textBox_message.Name = "textBox_message";
             this.textBox_message.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_message.Size = new System.Drawing.Size(241, 681);
+            this.textBox_message.Size = new System.Drawing.Size(277, 681);
             this.textBox_message.TabIndex = 1;
             // 
             // button_thread_stop
             // 
             this.button_thread_stop.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_thread_stop.Location = new System.Drawing.Point(255, 12);
+            this.button_thread_stop.Location = new System.Drawing.Point(218, 12);
             this.button_thread_stop.Name = "button_thread_stop";
-            this.button_thread_stop.Size = new System.Drawing.Size(237, 83);
+            this.button_thread_stop.Size = new System.Drawing.Size(200, 70);
             this.button_thread_stop.TabIndex = 2;
             this.button_thread_stop.Text = "Thread Stop";
             this.button_thread_stop.UseVisualStyleBackColor = true;
@@ -79,7 +81,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 21;
-            this.dataGridView1.Size = new System.Drawing.Size(479, 681);
+            this.dataGridView1.Size = new System.Drawing.Size(552, 681);
             this.dataGridView1.TabIndex = 3;
             // 
             // splitContainer1
@@ -97,15 +99,39 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Size = new System.Drawing.Size(724, 681);
-            this.splitContainer1.SplitterDistance = 241;
+            this.splitContainer1.Size = new System.Drawing.Size(833, 681);
+            this.splitContainer1.SplitterDistance = 277;
             this.splitContainer1.TabIndex = 4;
+            // 
+            // button_suspend
+            // 
+            this.button_suspend.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button_suspend.Location = new System.Drawing.Point(424, 12);
+            this.button_suspend.Name = "button_suspend";
+            this.button_suspend.Size = new System.Drawing.Size(200, 70);
+            this.button_suspend.TabIndex = 5;
+            this.button_suspend.Text = "Suspend";
+            this.button_suspend.UseVisualStyleBackColor = true;
+            this.button_suspend.Click += new System.EventHandler(this.button_suspend_Click);
+            // 
+            // button_resume
+            // 
+            this.button_resume.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button_resume.Location = new System.Drawing.Point(630, 12);
+            this.button_resume.Name = "button_resume";
+            this.button_resume.Size = new System.Drawing.Size(200, 70);
+            this.button_resume.TabIndex = 6;
+            this.button_resume.Text = "Resume";
+            this.button_resume.UseVisualStyleBackColor = true;
+            this.button_resume.Click += new System.EventHandler(this.button_resume_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(748, 794);
+            this.ClientSize = new System.Drawing.Size(857, 794);
+            this.Controls.Add(this.button_resume);
+            this.Controls.Add(this.button_suspend);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.button_thread_stop);
             this.Controls.Add(this.button_thread_start);
@@ -128,6 +154,8 @@
         private System.Windows.Forms.Button button_thread_stop;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button button_suspend;
+        private System.Windows.Forms.Button button_resume;
     }
 }
 

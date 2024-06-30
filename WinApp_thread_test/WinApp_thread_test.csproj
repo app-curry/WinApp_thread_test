@@ -58,6 +58,7 @@
     <Compile Include="TestControl\Const.cs" />
     <Compile Include="Thread_2_0\GUIThreadTest.cs" />
     <Compile Include="Thread_2_0\GUIThreadBase.cs" />
+    <Compile Include="Thread_2_0\SuspendableThreadBase.cs" />
     <Compile Include="Thread_2_0\ThreadBase.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
