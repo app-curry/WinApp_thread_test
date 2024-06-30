@@ -34,7 +34,7 @@ namespace WinApp_thread_test.Thread_2_0
 
             for (step = 0; step < max + 1; step++) 
             {
-                if (_break)
+                if (_isBreak)
                     break;
 
                 if (_isSuspend)

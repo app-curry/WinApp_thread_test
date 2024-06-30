@@ -91,7 +91,7 @@ namespace WinApp_thread_test
         {
             foreach (GUIThreadTest thread in _threadList)
             {
-                thread.Break = true;
+                thread.StopThread();
             }
         }
 

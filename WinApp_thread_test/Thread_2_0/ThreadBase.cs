@@ -10,14 +10,15 @@ namespace WinApp_thread_test.Thread_2_0
 
     abstract public class ThreadBase
     {
-        protected volatile bool _break = false;
-        public bool Break
+        protected volatile bool _isBreak = false;
+        public bool IsBreak
         {
-            set
-            {
-                _break = value;
-            }
-            get { return _break; }
+            get { return _isBreak; }
+        }
+
+        public void StopThread()
+        {
+            _isBreak = true;
         }
 
         public virtual Thread StartThread()
