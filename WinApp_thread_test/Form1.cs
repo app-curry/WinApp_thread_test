@@ -75,11 +75,11 @@ namespace WinApp_thread_test
             {
                 SuspendThread();
 
-                DialogResult dlgrer = MessageBox.Show(
+                DialogResult dlgret = MessageBox.Show(
                     string.Format("スレッド（残り{0}）の実行中です。\r\n中断して終了しますか？", threadcnt.ToString())
                     , "ウィンドウの終了", MessageBoxButtons.YesNo);
 
-                if (dlgrer == DialogResult.Yes)
+                if (dlgret == DialogResult.Yes)
                 {
                     // 終了
                     _windowclosing = true;
