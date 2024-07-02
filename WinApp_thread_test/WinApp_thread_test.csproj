@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestControl\ModalLoop.cs" />
     <Compile Include="TestControl\Const.cs" />
     <Compile Include="Thread_2_0\GUIThreadTest.cs" />
     <Compile Include="Thread_2_0\GUIThreadBase.cs" />

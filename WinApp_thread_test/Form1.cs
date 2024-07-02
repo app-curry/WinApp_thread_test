@@ -47,6 +47,57 @@ namespace WinApp_thread_test
             col_progress.HeaderText = "progress";
             dataGridView1.Columns.Add(col_progress);
 
+            this.FormClosing += Form1_FormClosing;
+        }
+
+        private ModalLoop _modalLoop;
+
+        protected void StartModalLoop()
+        {
+            _modalLoop = new ModalLoop();
+            _modalLoop.Loop();
+        }
+
+        protected void EndModalLoop()
+        {
+            if (_modalLoop != null)
+            {
+                _modalLoop.Stop();
+                _modalLoop = null;
+            }
+        }
+
+        private bool _windowclosing = false;
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            int threadcnt = _threadList.Count;
+            if (threadcnt > 0)
+            {
+                SuspendThread();
+
+                DialogResult dlgrer = MessageBox.Show(
+                    string.Format("スレッド（残り{0}）の実行中です。\r\n中断して終了しますか？", threadcnt.ToString())
+                    , "ウィンドウの終了", MessageBoxButtons.YesNo);
+
+                if (dlgrer == DialogResult.Yes)
+                {
+                    // 終了
+                    _windowclosing = true;
+
+                    this.Enabled = false;
+                    this.Hide();
+                    StopThread();
+                    ResumeThread();
+
+                    StartModalLoop();
+                }
+                else
+                {
+                    // 継続
+                    e.Cancel = true;
+                    ResumeThread();
+                }
+            }
         }
 
         private List<GUIThreadTest> _threadList = new List<GUIThreadTest>();
@@ -85,9 +136,33 @@ namespace WinApp_thread_test
             _threadList.Remove((GUIThreadTest)sender);
 
             textBox_message.AppendText(string.Format("ThreadCompleteEvent {0}", threadid) + Environment.NewLine);
+
+            if (_windowclosing)
+            {
+                int threadcnt = _threadList.Count;
+                if (threadcnt == 0)
+                {
+                    EndModalLoop();
+                }
+            }
         }
 
         private void button_thread_stop_Click(object sender, EventArgs e)
+        {
+            StopThread();
+        }
+
+        private void button_suspend_Click(object sender, EventArgs e)
+        {
+            SuspendThread();
+        }
+
+        private void button_resume_Click(object sender, EventArgs e)
+        {
+            ResumeThread();
+        }
+
+        private void StopThread()
         {
             foreach (GUIThreadTest thread in _threadList)
             {
@@ -95,7 +170,7 @@ namespace WinApp_thread_test
             }
         }
 
-        private void button_suspend_Click(object sender, EventArgs e)
+        private void SuspendThread()
         {
             foreach (GUIThreadTest thread in _threadList)
             {
@@ -103,12 +178,15 @@ namespace WinApp_thread_test
             }
         }
 
-        private void button_resume_Click(object sender, EventArgs e)
+        private void ResumeThread()
         {
             foreach (GUIThreadTest thread in _threadList)
             {
                 thread.ResumeThread();
             }
         }
+
+
+
     }
 }
