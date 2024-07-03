@@ -48,6 +48,19 @@ namespace WinApp_thread_test
             dataGridView1.Columns.Add(col_progress);
 
             this.FormClosing += Form1_FormClosing;
+
+            groupBox_thread.Enabled = false;
+        }
+
+        bool IsThreadsAlive
+        {
+            get
+            {
+                bool ret = _threadList.Count > 0;
+
+                return ret;
+
+            }
         }
 
         private ModalLoop _modalLoop;
@@ -70,11 +83,11 @@ namespace WinApp_thread_test
         private bool _windowclosing = false;
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            int threadcnt = _threadList.Count;
-            if (threadcnt > 0)
+            if(IsThreadsAlive)
             {
                 SuspendThread();
 
+                int threadcnt = _threadList.Count;
                 DialogResult dlgret = MessageBox.Show(
                     string.Format("スレッド（残り{0}）の実行中です。\r\n中断して終了しますか？", threadcnt.ToString())
                     , "ウィンドウの終了", MessageBoxButtons.YesNo);
@@ -124,6 +137,10 @@ namespace WinApp_thread_test
             _threadList.Add((GUIThreadTest)sender);
 
             textBox_message.AppendText(string.Format("ThreadStartEvent {0}", threadid) + Environment.NewLine);
+
+
+            groupBox_thread.Enabled = true;
+
         }
 
         private void Thread_ThreadProgressEvent(object sender, int step, int max, int threadid)
@@ -137,10 +154,11 @@ namespace WinApp_thread_test
 
             textBox_message.AppendText(string.Format("ThreadCompleteEvent {0}", threadid) + Environment.NewLine);
 
+            groupBox_thread.Enabled = IsThreadsAlive;
+
             if (_windowclosing)
             {
-                int threadcnt = _threadList.Count;
-                if (threadcnt == 0)
+                if(!IsThreadsAlive)
                 {
                     EndModalLoop();
                 }
@@ -186,7 +204,22 @@ namespace WinApp_thread_test
             }
         }
 
+        /// <summary>
+        /// デッドロックテスト
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_deadlock1_Click(object sender, EventArgs e)
+        {
+            foreach (GUIThreadTest thread in _threadList)
+            {
+                thread.Join();
+            }
+        }
 
+        private void button_deadlock2_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

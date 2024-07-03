@@ -30,6 +30,9 @@ namespace WinApp_thread_test.TestControl
 
     //}
 
+    /// <summary>
+    /// ウィンドウ終了時にデッドロックを回避してスレッド全部の終了を待機するループ処理
+    /// </summary>
     public class ModalLoop
     {
         private bool _isStop = false;

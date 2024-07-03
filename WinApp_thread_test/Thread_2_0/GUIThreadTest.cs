@@ -22,6 +22,27 @@ namespace WinApp_thread_test.Thread_2_0
             get { return _threadid; }
         }
 
+        #region デッドロックテスト用
+        private Thread _activethread = null;
+
+        public override Thread StartThread()
+        {
+            Thread thread = base.StartThread();
+
+            _activethread = thread;
+
+            return thread;
+        }
+
+        public void Join()
+        {
+            if (_activethread != null)
+            {
+                _activethread.Join();
+            }
+        }
+
+        #endregion
 
         public override void ThreadMethod()
         {
