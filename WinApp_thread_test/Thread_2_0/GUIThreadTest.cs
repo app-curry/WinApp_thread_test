@@ -15,12 +15,12 @@ namespace WinApp_thread_test.Thread_2_0
         {
         }
 
-        private int _threadid;
+        //private int _threadid;
 
-        public int Threadid
-        {
-            get { return _threadid; }
-        }
+        //public int Threadid
+        //{
+        //    get { return _threadid; }
+        //}
 
         #region デッドロックテスト用
         private Thread _activethread = null;
@@ -46,9 +46,9 @@ namespace WinApp_thread_test.Thread_2_0
 
         public override void ThreadMethod()
         {
-            _threadid = Thread.CurrentThread.ManagedThreadId;
+            int threadid = Thread.CurrentThread.ManagedThreadId;
 
-            OnThreadStartEvent(this, _threadid);
+            OnThreadStartEvent(this, threadid);
 
             int step = 0;
             int max = 100;
@@ -63,10 +63,10 @@ namespace WinApp_thread_test.Thread_2_0
 
                 Thread.Sleep(50);
 
-                OnThreadProgressEvent(this, step, max, _threadid);
+                OnThreadProgressEvent(this, step, max, threadid);
             }
 
-            OnThreadCompleteEvent(this, _threadid);
+            OnThreadCompleteEvent(this, threadid);
         }
 
         public delegate void ThreadProgressEventHandler(object sender, int step, int max, int threadid);

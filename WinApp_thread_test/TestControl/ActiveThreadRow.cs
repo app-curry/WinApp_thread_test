@@ -26,7 +26,7 @@ namespace WinApp_thread_test.TestControl
 
         private void _thread_ThreadStartEvent(object sender, int threadid)
         {
-            this.Cells[TestControl.Const.c_col_threadid].Value = _thread.Threadid;
+            this.Cells[TestControl.Const.c_col_threadid].Value = threadid;
         }
 
         private void _thread_ThreadProgressEvent(object sender, int step, int max, int threadid)

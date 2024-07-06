@@ -52,6 +52,8 @@ namespace WinApp_thread_test
             groupBox_thread.Enabled = false;
         }
 
+        private List<GUIThreadTest> _threadList = new List<GUIThreadTest>();
+
         bool IsThreadsAlive
         {
             get
@@ -113,7 +115,6 @@ namespace WinApp_thread_test
             }
         }
 
-        private List<GUIThreadTest> _threadList = new List<GUIThreadTest>();
 
         private void button_thread_start_Click(object sender, EventArgs e)
         {
@@ -217,9 +218,28 @@ namespace WinApp_thread_test
             }
         }
 
+        /// <summary>
+        /// 競合するリソースA取得中にリソースBを参照
+        /// 競合するリソースB取得中にリソースAを参照
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_deadlock2_Click(object sender, EventArgs e)
         {
+            DeadlockThreadTest thread = new DeadlockThreadTest(this);
+
+            thread.ThreadStartEvent += Thread_ThreadStartEvent;
+            thread.ThreadProgressEvent += Thread_ThreadProgressEvent;
+            thread.ThreadCompleteEvent += Thread_ThreadCompleteEvent;
+
+            DataGridViewRow row = new ActiveThreadRow(dataGridView1, thread);
+            row.CreateCells(this.dataGridView1, new object[] { "", "" });
+            this.dataGridView1.Rows.Add(row);
+
+
+            thread.StartThread();
 
         }
+
     }
 }
