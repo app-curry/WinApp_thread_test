@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ThreadTestLibrary.Thread_2_0;
 
 namespace WinApp_thread_test.Thread_2_0
 {

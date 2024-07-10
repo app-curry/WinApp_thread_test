@@ -60,8 +60,6 @@
     <Compile Include="Thread_2_0\DeadlockThreadTest.cs" />
     <Compile Include="Thread_2_0\GUIThreadTest.cs" />
     <Compile Include="Thread_2_0\GUIThreadBase.cs" />
-    <Compile Include="Thread_2_0\SuspendableThreadBase.cs" />
-    <Compile Include="Thread_2_0\ThreadBase.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +87,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Thread_2_0\Net v2.0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ThreadTestLibrary\ThreadTestLibrary.csproj">
+      <Project>{604bbd97-ca0b-430f-a059-bc3861b936ca}</Project>
+      <Name>ThreadTestLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

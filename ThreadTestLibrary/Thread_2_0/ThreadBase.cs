@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace WinApp_thread_test.Thread_2_0
+namespace ThreadTestLibrary.Thread_2_0
 {
 
     abstract public class ThreadBase
